@@ -1,6 +1,6 @@
 # rs-download 下载文件工具
 
-根据 HTTP range requests 实现并发下载文件。
+一款 Rust 开发的下载工具，根据 [HTTP range requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests) 实现并发下载文件。
 
 # Usage
 
