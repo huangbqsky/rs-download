@@ -1,8 +1,10 @@
-
 mod config;
+mod http;
 
 pub(crate) type Result<T = ()> = anyhow::Result<T>;
 
-fn main() {
-    println!("Hello, world!");
+#[tokio::main]
+async fn main() -> Result {
+    http::run().await?;
+    Ok(())
 }
