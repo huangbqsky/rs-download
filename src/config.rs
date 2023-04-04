@@ -22,12 +22,28 @@ impl Config {
             .version(crate_version!())
             .author(crate_authors!())
             .about(crate_description!())
-            .args(&[
-                Arg::new("size").help("并发任务数量").required(true),
-                Arg::new("uri").help("资源 URI").required(true),
-                Arg::new("file-path").help("保存文件路径").required(false),
-            ])
+            .arg(Arg::with_name("size")
+                // .short('f')
+                // .long("size")
+                // .takes_value(true)
+                .help("并发任务数"))
+            .arg(Arg::with_name("uri")
+                // .short('u')
+                // .long("uri")
+                // .takes_value(true)
+                .help("下载地址"))
+            .arg(Arg::with_name("file-path")
+                // .short('p')
+                // .long("file-path")
+                // .takes_value(true)
+                .help("保存路径"))
             .get_matches();
+            // .args(&[
+            //     Arg::new("size").help("并发任务数量").required(true),
+            //     Arg::new("uri").help("资源 URI").required(true),
+            //     Arg::new("file-path").help("保存文件路径").required(false),
+            // ])
+            // .get_matches();
 
         let size = matches.value_of_t("size")?;
         let uri: Uri = matches.value_of_t("uri")?;
