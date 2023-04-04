@@ -12,6 +12,7 @@ hyper-tls = "0.5.0"
 anyhow = "1.0.56"
 lazy_static = "1.4.0"
 indicatif = "0.17.0-rc.10"
+md5 = "0.7.0"
 
 
 [dependencies.clap]
