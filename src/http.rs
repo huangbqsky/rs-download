@@ -62,15 +62,15 @@ fn download_block(
     bar: ProgressBar,
 ) -> JoinHandle<Result> {
     spawn(async move {
+        // 构建一个下载 request
         let request = Request::builder()
             .method(Method::GET)
-            .header(
-                "range",
-                format!("bytes={}-{}", start, start + block_size - 1),
-            )
+            .header("range",format!("bytes={}-{}", start, start + block_size - 1))
             .uri(&CONFIG.uri)
             .body(Body::empty())?;
+        // 接收下载数据
         let response = CLIENT.request(request).await?;
+        // 写入文件
         write_file(response, index.0, &bar).await?;
         bar.finish_with_message(format!("任务 {} 下载完成", index.1));
         Ok(())
@@ -88,6 +88,7 @@ async fn write_file(mut response: Response<Body>, index: usize, bar: &ProgressBa
         .await?;
     while let Some(next) = response.data().await {
         let bytes = next?;
+        // 进度条
         bar.inc(bytes.len() as u64);
         file.write_all(&bytes).await?;
     }
@@ -181,6 +182,7 @@ pub async fn run() -> Result {
     for handle in handles {
         handle.await??;
     }
+    // 合并块文件成一个文件
     merge_file(content_length as u64).await?;
     println!("耗时：{:?}", start.elapsed());
     Ok(())
