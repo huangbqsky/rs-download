@@ -49,8 +49,7 @@ impl Config {
         let uri: Uri = matches.value_of_t("uri")?;
         let file_path = matches.value_of("file-path");
       
-        println!("The uri passed is: {:?}", uri.path());
-        println!("The file_path passed is: {:?}", file_path.unwrap_or("null"));
+        println!("passed file_path is: {:?}", file_path.unwrap_or("null"));
 
         let file_path = match file_path {
             Some(val) => val.to_string(),
