@@ -15,7 +15,6 @@ lazy_static = "1.4.0"
 indicatif = "0.17.0-rc.10"
 md5 = "0.7.0"
 
-
 [dependencies.clap]
 version = "3.1.9"
 default-features = false
